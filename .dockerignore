@@ -26,3 +26,6 @@ yarn-error.log*
 .dockerignore
 Dockerfile
 docker-compose.yml
+
+# Rust
+target/
