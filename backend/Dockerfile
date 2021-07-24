@@ -26,5 +26,6 @@ ENV ROCKET_ADDRESS=0.0.0.0
 COPY . .
 # Copy over the cached dependencies
 COPY --from=cacher /app/target target
+RUN cargo install cargo-watch
 EXPOSE 8080
-CMD cargo run
+CMD cargo watch -x run
