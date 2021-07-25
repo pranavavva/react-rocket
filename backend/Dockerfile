@@ -1,4 +1,4 @@
-FROM rust:1.53.0-slim as planner
+FROM rustlang/rust:nightly-slim as planner
 
 WORKDIR /app
 # We only pay the installation cost once, 
@@ -8,7 +8,7 @@ COPY . .
 RUN cargo chef prepare --recipe-path recipe.json
 
 
-FROM rust:1.53.0-slim as cacher
+FROM rustlang/rust:nightly-slim as cacher
 
 WORKDIR /app
 RUN cargo install cargo-chef
@@ -16,7 +16,7 @@ COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --recipe-path recipe.json
 
 
-FROM rust:1.53.0-slim as builder
+FROM rustlang/rust:nightly-slim as builder
 
 WORKDIR /app
 

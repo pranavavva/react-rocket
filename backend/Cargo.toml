@@ -7,3 +7,7 @@ edition = "2018"
 
 [dependencies]
 rocket = "0.5.0-rc.1"
+rocket_contrib = "0.4.10"
+serde = "1.0.126"
+serde_json = "1.0.64"
+rocket_cors = "0.5.2"

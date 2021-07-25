@@ -1,11 +1,23 @@
-#[macro_use] extern crate rocket;
+#[macro_use]
+extern crate rocket;
+extern crate serde;
 
-#[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
+use serde::{Deserialize, Serialize};
+
+#[derive(Serialize, Deserialize)]
+struct Message {
+    text: &'static str,
 }
 
-#[launch]
+#[get("/")]
+fn index() -> String {
+    let message = Message {
+        text: "this is an edit!",
+    };
+
+    serde_json::to_string(&message).unwrap()
+}
+
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![index])
+    rocket::ignite().mount("/api", routes![index])
 }
